@@ -40,8 +40,18 @@ def get_words(html_as_str):
             words.append(word)
     return filter(not_empty,words)
 
+def word_frequency_dict(words_list):
+    words_freq_dict = dict()
+    for word in words_list:
+        if word in words_freq_dict:
+            words_freq_dict[word]+=1
+        else:
+            words_freq_dict[word]=1
+    return words_freq_dict
+
+
 
 
 bbc= download_page("http://www.bbc.com/")
 print extract_links(bbc)
-print get_words(bbc)
+print word_frequency_dict(get_words(bbc))

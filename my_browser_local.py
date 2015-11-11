@@ -1,8 +1,11 @@
 from search_engine import *
 
 class My_Browser():
-    def __init__(self,url,num_links):
-        self.pages_list = [url] + extract_links(download_page(url))[0:num_links]
+    def __init__(self):
+        self.pages_list = ['file:///home/malaania/UWr/websites/1.html',
+                           'file:///home/malaania/UWr/websites/2.html',
+                           'file:///home/malaania/UWr/websites/3.html',
+                           'file:///home/malaania/UWr/websites/4.html',]
         self.index = self.__prepare_index()
 
     def __prepare_index(self):

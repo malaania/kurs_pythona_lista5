@@ -2,14 +2,19 @@ from search_engine import *
 import threading
 
 class Website(threading.Thread):
-    def __init__(self,url):
+    def __init__(self,url, lock):
         self.url = url
+        self.lock = lock
         threading.Thread.__init__(self)
 
     def run(self):
         print "Thread-"+self.url
+        self.lock.acquire()
+        print "Thread-"+self.url+" lock aqcuired"
         html = download_page(self.url)
         words_list  = get_words(html)
+        print "Thread-"+self.url+" lock released"
+        self.lock.release()
         self.words_freqency_dict = word_frequency_dict(words_list)
         print "Exiting Thread-"+self.url
 
@@ -23,7 +28,8 @@ class My_Browser():
 
     def __prepare_index(self):
         tuples_list= []
-        threads_list = [Website(url) for url in self.pages_list]
+        lock = threading.Lock()
+        threads_list = [Website(url, lock) for url in self.pages_list]
         for thread in threads_list:
             thread.start()
         for thread in threads_list:

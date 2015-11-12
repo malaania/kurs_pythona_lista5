@@ -29,7 +29,7 @@ class My_Browser():
         for thread in threads_list:
             thread.join()
         for page in threads_list:
-            tuples_list.append(page.url, page.words_freqency_dict)
+            tuples_list.append((page.url, page.words_freqency_dict))
         return index_pages(tuples_list)
 
     def find_websites(self, word):

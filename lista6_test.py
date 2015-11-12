@@ -1,4 +1,4 @@
-from my_browser_local import *
+from lista6_my_local_browser import *
 
 browser = My_Browser()
 print browser.pages_list

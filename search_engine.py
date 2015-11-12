@@ -64,7 +64,8 @@ def index_pages(tuples_page_dict_list):
 
 def look_up_the_word(words_pages_dict, word):
     if word not in words_pages_dict:
-        return "Sorry! No search result."
+        print "Sorry! No search result."
+        return []
     else:
         result_dict = words_pages_dict[word]
         return sorted(result_dict, key=result_dict.__getitem__,reverse=True)
